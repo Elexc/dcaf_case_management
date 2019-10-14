@@ -18,7 +18,7 @@ jobs:
           node-version: '10.x'
       - run: |
           git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-          echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+          export PATH="$HOME/.rbenv/bin:$PATH"
           eval "$(rbenv init -)"
           git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
           rbenv install 2.6.5
