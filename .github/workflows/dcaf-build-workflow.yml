@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-16.04
-    # container: ruby:2.6.5
+    container: ruby:2.6.5
     name: Build
     steps:
       - uses: actions/checkout@v1
@@ -16,14 +16,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - run: |
-          git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-          export PATH="$HOME/.rbenv/bin:$PATH"
-          eval "$(rbenv init -)"
-          git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-          rbenv install 2.6.5
-          rbenv global 2.6.5
-          echo "gem: --no-document" > ~/.gemrc
+      # - run: |
+      #     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      #     export PATH="$HOME/.rbenv/bin:$PATH"
+      #     eval "$(rbenv init -)"
+      #     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+      #     rbenv install 2.6.5
+      #     rbenv global 2.6.5
+      #     echo "gem: --no-document" > ~/.gemrc
       - run: sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add
       - run: echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
       - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
