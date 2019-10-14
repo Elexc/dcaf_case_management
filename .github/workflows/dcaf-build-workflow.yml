@@ -17,11 +17,13 @@ jobs:
         with:
           node-version: '10.x'
       - run: |
-          sudo apt-add-repository -y ppa:rael-gc/rvm
-          sudo apt-get update
-          sudo apt-get install -y rvm
-          rvm install 2.6.5
-          rvm use 2.6.5
+          git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+          echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+          eval "$(rbenv init -)"
+          git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+          rbenv install 2.6.5
+          rbenv global 2.6.5
+          echo "gem: --no-document" > ~/.gemrc
       - run: sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add
       - run: echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
       - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
