@@ -17,9 +17,8 @@ jobs:
         with:
           node-version: '10.x'
       - run: |
-          sudo apt-get install software-properties-common
           sudo apt-add-repository -y ppa:rael-gc/rvm
-          sudo apt-get install rvm
+          sudo apt-get install -y rvm
           rvm install 2.6.5
           rvm use 2.6.5
       - run: sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add
