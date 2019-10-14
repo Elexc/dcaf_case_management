@@ -24,13 +24,13 @@ jobs:
       #     rbenv install 2.6.5
       #     rbenv global 2.6.5
       #     echo "gem: --no-document" > ~/.gemrc
-      - run: sudo curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add
-      - run: echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-      - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-      - run: echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-      - run: sudo apt-get update
-      - run: sudo apt-get install -y mongodb-org google-chrome-stable chromium-chromedriver libgconf-2-4 --allow-unauthenticated
-      - run: sudo systemctl start mongod
+      - run: curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
+      - run: echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+      - run: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+      - run: echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+      - run: apt-get update
+      - run: apt-get install -y mongodb-org google-chrome-stable chromium-chromedriver libgconf-2-4 --allow-unauthenticated
+      - run: systemctl start mongod
       - run: bundle check || bundle install
       - run: yarn install
       - run: NODE_ENV=test bundle exec rails webpacker:compile
